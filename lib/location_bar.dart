@@ -1,6 +1,22 @@
+import 'package:bottom_sheet/indicator_bar.dart';
 import 'package:flutter/material.dart';
 
 class LocationBar extends StatefulWidget {
+
+  final GlobalKey<ScaffoldState> scaffoldKey;
+
+  final VoidCallback onTapBar;
+  final VoidCallback onTapLeft;
+  final VoidCallback onTapRight;
+
+  LocationBar({
+    Key key,
+    @required this.scaffoldKey,
+    this.onTapBar,
+    this.onTapLeft,
+    this.onTapRight,
+  }) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _LocationBarState();
@@ -8,6 +24,9 @@ class LocationBar extends StatefulWidget {
 }
 
 class _LocationBarState extends State<LocationBar> {
+
+  GlobalKey<ScaffoldState> get scaffoldKey => widget.scaffoldKey;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -15,69 +34,41 @@ class _LocationBarState extends State<LocationBar> {
       children: <Widget>[
         Padding(
           padding: EdgeInsets.all(15),
-          child: Container(
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.all(const Radius.circular(40.0)),
-            ),
-            child:Icon(
-              Icons.close,
-              color: Colors.white,
+          child: GestureDetector(
+            onTap: widget.onTapLeft,
+            child: Container(
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.all(const Radius.circular(40.0)),
+              ),
+              child:Icon(
+                Icons.close,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
         Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Colors.grey),
-              borderRadius: BorderRadius.all(const Radius.circular(50.0)),
-            ),
-            child: Stack(
-              alignment: Alignment.center,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        child: Icon(
-                          Icons.search,
-                          color: Colors.blue,
-                        )
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 10),
-                      child: SizedBox(
-                        width: 25, height: 25,
-                        child: CircularProgressIndicator(),
-                      ),
-                    ),
-                  ],
-                ),
-                Text(
-                  '地點',
-                  style: TextStyle(
-                    color: Colors.grey[600],
-                  ),
-                ),
-              ],
-            ),
+          child: IndicatorBar(
+            onTap: widget.onTapBar,
           ),
         ),
-        Padding(
-          padding: EdgeInsets.all(15),
-          child: Container(
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(const Radius.circular(40.0)),
-              border: Border.all(color: Colors.grey[200]),
-            ),
-            child:Icon(
-              Icons.near_me,
-              color: Colors.blue,
+        GestureDetector(
+          onTap: widget.onTapRight,
+          child: Padding(
+            padding: EdgeInsets.all(15),
+            child: Container(
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(const Radius.circular(40.0)),
+                border: Border.all(color: Colors.grey[200]),
+              ),
+              child:Icon(
+                Icons.near_me,
+                color: Colors.blue,
+              ),
             ),
           ),
         ),
