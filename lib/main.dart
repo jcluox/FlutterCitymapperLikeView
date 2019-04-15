@@ -1,4 +1,5 @@
 import 'package:bottom_sheet/bottom_sheet_stack.dart';
+import 'package:bottom_sheet/door_page.dart';
 import 'package:bottom_sheet/location_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+
+  final topDoorHeight = 250.0;
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   GlobalKey<BottomSheetStackState> _sheetKey = GlobalKey<BottomSheetStackState>();
@@ -47,9 +50,48 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     onTapLeft: () {
                       _sheetKey.currentState.switchSheet();
                     },
+                    onTapBar: () {
+                      closeDoor(context, DoorBody(
+                        topTag: 'this is top tag',
+                        bottomTag: 'this is bottom tag',
+                        topHeight: topDoorHeight,
+                        topWidget: Container(
+                          color: Colors.blue,
+                          width: MediaQuery.of(context).size.width,
+                          padding: EdgeInsets.all(20),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              GestureDetector(
+                                child: Icon(Icons.arrow_back),
+                                onTap: () {
+                                  openDoor(context);
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        bottomWidget: Container(color: Colors.green),
+                      ));
+                    }
                   ),
                 ],
               ),
+            ),
+            makeShadowDoor(
+              context,
+              direction: ShadowDoorDirection.TOP,
+              topDoorHeight: topDoorHeight,
+              tag: 'this is top tag',
+              child: Container(color: Colors.blue,child: null),
+            ),
+            makeShadowDoor(
+              context,
+              direction: ShadowDoorDirection.BOTTOM,
+              topDoorHeight: topDoorHeight,
+              tag: 'this is bottom tag',
+              child: Container(color: Colors.green, child: null),
             ),
           ],
           sheet: Container(
