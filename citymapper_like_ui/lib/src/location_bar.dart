@@ -1,4 +1,4 @@
-import 'package:bottom_sheet/indicator_bar.dart';
+import 'indicator_bar.dart';
 import 'package:flutter/material.dart';
 
 class LocationBar extends StatefulWidget {

@@ -1,6 +1,4 @@
-import 'package:bottom_sheet/bottom_sheet_stack.dart';
-import 'package:bottom_sheet/door_page.dart';
-import 'package:bottom_sheet/location_bar.dart';
+import 'package:citymapper_like_ui/citymapper_like_ui.dart';
 import 'package:flutter/material.dart';
 
 main() => runApp(MaterialApp(
@@ -51,7 +49,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       _sheetKey.currentState.switchSheet();
                     },
                     onTapBar: () {
-                      closeDoor(context, DoorBody(
+                      closeDoor(context, Door(
                         topTag: 'this is top tag',
                         bottomTag: 'this is bottom tag',
                         topHeight: topDoorHeight,

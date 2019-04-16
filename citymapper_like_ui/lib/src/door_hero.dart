@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-void closeDoor(BuildContext context, DoorBody body) {
+void closeDoor(BuildContext context, Door door) {
   Navigator.of(context).push(
     MaterialPageRoute(
       builder: (BuildContext context) {
         return SafeArea(
           child: Scaffold(
-            body: body,
+            body: door,
           ),
         );
      }
@@ -18,7 +18,7 @@ void openDoor(BuildContext context) {
   Navigator.of(context).pop();
 }
 
-class DoorBody extends StatefulWidget {
+class Door extends StatefulWidget {
 
   final Widget topWidget;
   final Widget bottomWidget;
@@ -27,7 +27,7 @@ class DoorBody extends StatefulWidget {
   final Object topTag;
   final Object bottomTag;
 
-  DoorBody({
+  Door({
     Key key,
     @required this.topWidget,
     @required this.bottomWidget,
@@ -42,11 +42,11 @@ class DoorBody extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return DoorBodyState();
+    return DoorState();
   }
 }
 
-class DoorBodyState extends State<DoorBody> {
+class DoorState extends State<Door> {
 
   Object get topTag => widget.topTag;
   Object get bottomTag => widget.bottomTag;
