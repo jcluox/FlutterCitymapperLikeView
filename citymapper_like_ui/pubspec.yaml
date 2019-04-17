@@ -2,7 +2,7 @@ name: citymapper_like_ui
 description: Citymapper like userinterface.
 author: Jack Lo <jcluox@gmail.com>
 homepage: https://github.com/jcluox/FlutterCitymapperLikeView.git
-version: 0.0.1
+version: 0.0.2
 
 dependencies:
   flutter:

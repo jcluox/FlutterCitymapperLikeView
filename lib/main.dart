@@ -16,14 +16,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   final topDoorHeight = 250.0;
 
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   GlobalKey<BottomSheetStackState> _sheetKey = GlobalKey<BottomSheetStackState>();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        key: _scaffoldKey,
         body: BottomSheetStack(
           key: _sheetKey,
           defaultSheetTop: 400,
@@ -41,38 +39,78 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             Positioned.fill(
               top: 0,
               left: 0,
-              child: Column(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  LocationBar(
-                    scaffoldKey: _scaffoldKey,
-                    onTapCloseIcon: () {
-                      _sheetKey.currentState.switchSheet();
-                    },
-                    onTapIndicator: () {
-                      closeDoor(context, Door(
-                        topTag: 'this is top tag',
-                        bottomTag: 'this is bottom tag',
-                        topHeight: topDoorHeight,
-                        topWidget: Container(
+                  Padding(
+                    padding: EdgeInsets.all(15),
+                    child: GestureDetector(
+                      onTap: () {
+                        _sheetKey.currentState.switchSheet();
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
                           color: Colors.blue,
-                          width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.all(20),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              GestureDetector(
-                                child: Icon(Icons.arrow_back),
-                                onTap: () {
-                                  openDoor(context);
-                                },
-                              ),
-                            ],
-                          ),
+                          borderRadius: BorderRadius.all(const Radius.circular(40.0)),
                         ),
-                        bottomWidget: Container(color: Colors.green),
-                      ));
-                    }
+                        child:Icon(
+                          Icons.close,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: IndicatorBar(
+                        onTap: () {
+                          closeDoor(context, Door(
+                            topTag: 'this is top tag',
+                            bottomTag: 'this is bottom tag',
+                            topHeight: topDoorHeight,
+                            topWidget: Container(
+                              color: Colors.blue,
+                              width: MediaQuery.of(context).size.width,
+                              padding: EdgeInsets.all(20),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  GestureDetector(
+                                    child: Icon(Icons.arrow_back),
+                                    onTap: () {
+                                      openDoor(context);
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                            bottomWidget: Container(color: Colors.green),
+                          ));
+                        },
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Padding(
+                      padding: EdgeInsets.all(15),
+                      child: Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(const Radius.circular(40.0)),
+                          border: Border.all(color: Colors.grey[200]),
+                        ),
+                        child:Icon(
+                          Icons.near_me,
+                          color: Colors.blue,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
