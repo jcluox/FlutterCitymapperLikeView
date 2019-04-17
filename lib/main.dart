@@ -45,10 +45,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 children: <Widget>[
                   LocationBar(
                     scaffoldKey: _scaffoldKey,
-                    onTapLeft: () {
+                    onTapCloseIcon: () {
                       _sheetKey.currentState.switchSheet();
                     },
-                    onTapBar: () {
+                    onTapIndicator: () {
                       closeDoor(context, Door(
                         topTag: 'this is top tag',
                         bottomTag: 'this is bottom tag',

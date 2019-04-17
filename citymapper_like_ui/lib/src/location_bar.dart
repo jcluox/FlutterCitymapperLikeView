@@ -5,16 +5,16 @@ class LocationBar extends StatefulWidget {
 
   final GlobalKey<ScaffoldState> scaffoldKey;
 
-  final VoidCallback onTapBar;
-  final VoidCallback onTapLeft;
-  final VoidCallback onTapRight;
+  final VoidCallback onTapIndicator;
+  final VoidCallback onTapCloseIcon;
+  final VoidCallback onTapNearMeIcon;
 
   LocationBar({
     Key key,
     @required this.scaffoldKey,
-    this.onTapBar,
-    this.onTapLeft,
-    this.onTapRight,
+    this.onTapIndicator,
+    this.onTapCloseIcon,
+    this.onTapNearMeIcon,
   }) : super(key: key);
 
   @override
@@ -35,7 +35,7 @@ class _LocationBarState extends State<LocationBar> {
         Padding(
           padding: EdgeInsets.all(15),
           child: GestureDetector(
-            onTap: widget.onTapLeft,
+            onTap: widget.onTapCloseIcon,
             child: Container(
               padding: EdgeInsets.all(5),
               decoration: BoxDecoration(
@@ -51,11 +51,11 @@ class _LocationBarState extends State<LocationBar> {
         ),
         Expanded(
           child: IndicatorBar(
-            onTap: widget.onTapBar,
+            onTap: widget.onTapIndicator,
           ),
         ),
         GestureDetector(
-          onTap: widget.onTapRight,
+          onTap: widget.onTapNearMeIcon,
           child: Padding(
             padding: EdgeInsets.all(15),
             child: Container(
