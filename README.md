@@ -9,5 +9,6 @@ Set up pubspec.yaml of your project with
   citymapper_like_ui:
     git:
       url: git://github.com/jcluox/FlutterCitymapperLikeView
+      path: citymapper_like_ui
       ref: dev
 ```
