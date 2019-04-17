@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class BottomSheetStack extends StatefulWidget {
-  final double defaultSheetTop;
+  final double defaultSheetHeight;
   final Widget sheet;
   final List<Widget> children;
   final double maxSheetHeight;
 
   const BottomSheetStack({
     Key key,
-    @required this.defaultSheetTop,
+    @required this.defaultSheetHeight,
     @required this.sheet,
     @required this.children,
     this.maxSheetHeight,
@@ -26,6 +26,7 @@ class BottomSheetStackState extends State<BottomSheetStack> with TickerProviderS
   double _sheetTop;
   AnimationController _controller;
   Animation<double> _animation;
+  double get defaultSheetHeight => widget.defaultSheetHeight;
 
   @override
   void initState() {
@@ -46,7 +47,7 @@ class BottomSheetStackState extends State<BottomSheetStack> with TickerProviderS
       isDrawn = false;
     } else {
       begin = _sheetTop ?? screenHeight;
-      end = screenHeight - widget.defaultSheetTop;
+      end = screenHeight - defaultSheetHeight;
       isDrawn = true;
     }
     _animation = Tween<double>(begin: begin, end: end).animate(_controller);
@@ -84,9 +85,9 @@ class BottomSheetStackState extends State<BottomSheetStack> with TickerProviderS
         },
         onVerticalDragEnd: (DragEndDetails details) {
           setState(() {
-            if (_sheetTop > screenHeight - widget.defaultSheetTop) {
-              isDrawn = _sheetTop <= (screenHeight - widget.defaultSheetTop/2);
-              double toTop = isDrawn ? screenHeight - widget.defaultSheetTop : screenHeight;
+            if (_sheetTop > screenHeight - defaultSheetHeight) {
+              isDrawn = _sheetTop <= (screenHeight - defaultSheetHeight/2);
+              double toTop = isDrawn ? screenHeight - defaultSheetHeight : screenHeight;
               _animation = Tween<double>(begin: _sheetTop, end: toTop).animate(_controller);
               _controller..value = 0..fling();
             }

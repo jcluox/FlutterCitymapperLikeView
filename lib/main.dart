@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       child: Scaffold(
         body: BottomSheetStack(
           key: _sheetKey,
-          defaultSheetTop: 400,
+          defaultSheetHeight: 400,
           children: <Widget>[
             Positioned.fill(
               child: GestureDetector(
