@@ -15,4 +15,4 @@ Set up pubspec.yaml of your project with
 
 ## Demo
 
-![Video](https://github.com/jcluox/demo.gif)
+![Video](https://github.com/jcluox/FlutterCitymapperLikeView/blob/master/demo.gif)
