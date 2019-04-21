@@ -12,3 +12,7 @@ Set up pubspec.yaml of your project with
       path: citymapper_like_ui
       ref: dev
 ```
+
+## Demo
+
+[![Watch the video](https://img.youtube.com/vi/wnMOuSo970I/hqdefault.jpg)](https://youtu.be/wnMOuSo970I)
