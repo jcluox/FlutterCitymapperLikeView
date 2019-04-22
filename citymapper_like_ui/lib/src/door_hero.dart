@@ -58,7 +58,20 @@ class DoorState extends State<Door> {
   @override
   Widget build(BuildContext context) {
     var children;
-    if (topHeight == null) {
+    if (topHeight == null && bottomHeight == null) {
+      children = [
+        DoorHero(
+          tag: topTag,
+          child: topWidget,
+        ),
+        Expanded(
+          child: DoorHero(
+            tag: bottomTag,
+            child: bottomWidget,
+          ),
+        ),
+      ];
+    } else if (topHeight == null) {
       children = [
         Expanded(
           child: DoorHero(
